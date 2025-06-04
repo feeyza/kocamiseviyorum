@@ -1,5 +1,3 @@
-
 function nextLevel() {
-    alert("Bir sonraki level için hazır ol! 💫 
-(Devam sayfalarını ekleyebilirsin!)");
+    alert("Bir sonraki level için hazır ol! 💫 \n(Devam sayfalarını ekleyebilirsin!)");
 }
