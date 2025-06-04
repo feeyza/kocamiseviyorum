@@ -56,12 +56,24 @@
         <button onclick="window.location.href='level26.html'">Next Level ➡️</button>
     </div>
 
-    <script>
-        const music = document.getElementById('bg-music');
-        const toggleBtn = document.getElementById('music-toggle');
-        let isPlaying = false;
+   <script>
+    const music = document.getElementById('bg-music');
+    const toggleBtn = document.getElementById('music-toggle');
+    let isPlaying = false;
 
-        toggleBtn.addEventListener('click', () => {
+    toggleBtn.addEventListener('click', async () => {
+        try {
             if (isPlaying) {
                 music.pause();
-                toggleBtn.textConte
+                toggleBtn.textContent = '🔊';
+            } else {
+                await music.play();
+                toggleBtn.textContent = '🤍';
+            }
+            isPlaying = !isPlaying;
+        } catch (e) {
+            console.error("Müzik çalınamadı:", e);
+            alert("Müzik çalınırken bir hata oluştu. Lütfen sesi açtığından ve tarayıcı izin verdiğinden emin ol.");
+        }
+    });
+</script>
