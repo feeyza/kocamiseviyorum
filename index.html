@@ -6,34 +6,31 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-   <div class="container">
-    <h1>🎮 Level 25'e Hoş Geldin</h1>
-    <p>Multiplayer hayatımın en iyi oyuncususun 💖</p>
-
-    <button onclick="goToLevel('level24.html')">⬅️ Last Level</button>
-    <button onclick="goToLevel('level26.html')">Next Level ➡️</button>
-</div>
-
-<script>
-    function goToLevel(url) {
-        const audio = new Audio('i_wanna_be_yours.mp3');
-        audio.loop = true;
-        audio.play().then(() => {
-            // Müzik başladıktan sonra sayfa yönlendir
-            window.location.href = url;
-        }).catch((e) => {
-            console.error('Müzik çalınamadı:', e);
-            window.location.href = url;
-        });
-    }
-</script>
+    <!-- Müzik etiketi -->
+    <audio id="bg-music" loop>
+        <source src="i_wanna_be_yours.mp3" type="audio/mpeg" />
+        Tarayıcınız ses çalmayı desteklemiyor.
+    </audio>
 
     <div class="container">
         <h1>🎮 Level 25'e Hoş Geldin</h1>
         <p>Multiplayer hayatımın en iyi oyuncususun 💖</p>
 
-        <button onclick="window.location.href='level24.html'">⬅️ Last Level</button>
-        <button onclick="window.location.href='level26.html'">Next Level ➡️</button>
+        <!-- Ses başlat + sayfa yönlendirme -->
+        <button onclick="playMusicAndGo('level24.html')">⬅️ Last Level</button>
+        <button onclick="playMusicAndGo('level26.html')">Next Level ➡️</button>
     </div>
+
+    <script>
+        function playMusicAndGo(url) {
+            const music = document.getElementById("bg-music");
+            music.play().catch((e) => {
+                console.log("Müzik oynatılamadı:", e);
+            });
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500); // 0.5 saniye sonra yönlendir, müzik başlasın
+        }
+    </script>
 </body>
 </html>
