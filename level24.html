@@ -4,42 +4,90 @@
     <meta charset="UTF-8" />
     <title>LVL 24 - Özel Anılarımız</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      #sound-icon {
+        font-size: 50px;
+        cursor: pointer;
+        user-select: none;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+      #sound-icon:hover {
+        transform: scale(1.2);
+      }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>🌟 Level 24 - Özel Anılarımız</h1>
-        <p>Birlikte geçirdiğimiz güzel anlardan bir seçki...</p>
+      <div id="sound-icon" title="Müziği Aç/Kapat">🔊</div>
 
-        <section>
-            <h2>🎭 Sanat Fuarı Selfiemiz</h2>
-            <img src="sanat_fuari_selfie.jpg" alt="Sanat Fuarında Selfie" style="max-width: 100%; border-radius: 10px;" />
-            <p>O gün sanatın büyüsüyle dolduk, seninle olmak çok güzel.</p>
-        </section>
+      <h1>🌟 Level 24 - Özel Anılarımız</h1>
+      <p>Birlikte geçirdiğimiz güzel anlardan bir seçki...</p>
 
-        <section>
-            <h2>🐶 Köpek Sevdiğimiz An</h2>
-            <img src="kopek_seviyoruz.jpg" alt="Köpek Sevdiğimiz An" style="max-width: 100%; border-radius: 10px;" />
-            <p>Hayvan sevgimiz bizi daha da yakınlaştırdı, unutulmaz anlar.</p>
-        </section>
+      <section>
+          <h2>🎭 Sanat Fuarı Selfiemiz</h2>
+          <img src="sanat_fuari_selfie.jpg" alt="Sanat Fuarında Selfie" style="max-width: 100%; border-radius: 10px;" />
+          <p>O gün sanatın büyüsüyle dolduk, seninle olmak çok güzel.</p>
+      </section>
 
-        <section>
-            <h2>🤗 İlk Çekindiğimiz Selfiemiz</h2>
-            <img src="ilk_selfie.jpg" alt="İlk Selfie" style="max-width: 100%; border-radius: 10px;" />
-            <p>Utanarak çektiğimiz o an, şimdi en değerli fotoğrafımız.</p>
-        </section>
+      <section>
+          <h2>🐶 Köpek Sevdiğimiz An</h2>
+          <img src="kopek_seviyoruz.jpg" alt="Köpek Sevdiğimiz An" style="max-width: 100%; border-radius: 10px;" />
+          <p>Hayvan sevgimiz bizi daha da yakınlaştırdı, unutulmaz anlar.</p>
+      </section>
 
-        <section>
-            <h2>👶 Çocukluk Fotoğraflarımız</h2>
-            <div style="display:flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-                <img src="senin_cocukluk.jpg" alt="Senin Çocukluk Fotoğrafın" style="width: 150px; border-radius: 10px;" />
-                <img src="benim_cocukluk.jpg" alt="Benim Çocukluk Fotoğrafım" style="width: 150px; border-radius: 10px;" />
-            </div>
-            <p>Geçmişimizden gelen bu fotoğraflar, geleceğimizin temeli.</p>
-        </section>
+      <section>
+          <h2>🤗 İlk Çekindiğimiz Selfiemiz</h2>
+          <img src="ilk_selfie.jpg" alt="İlk Selfie" style="max-width: 100%; border-radius: 10px;" />
+          <p>Utanarak çektiğimiz o an, şimdi en değerli fotoğrafımız.</p>
+      </section>
 
-        <div style="margin-top: 30px;">
-            <button onclick="window.location.href='index.html'">➡️ Sonraki Level (25)</button>
-        </div>
+      <section>
+          <h2>👶 Çocukluk Fotoğraflarımız</h2>
+          <div style="display:flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+              <img src="senin_cocukluk.jpg" alt="Senin Çocukluk Fotoğrafın" style="width: 150px; border-radius: 10px;" />
+              <img src="benim_cocukluk.jpg" alt="Benim Çocukluk Fotoğrafım" style="width: 150px; border-radius: 10px;" />
+          </div>
+          <p>Geçmişimizden gelen bu fotoğraflar, geleceğimizin temeli.</p>
+      </section>
+
+      <div style="margin-top: 30px;">
+          <button onclick="window.location.href='index.html'">➡️ Sonraki Level (25)</button>
+      </div>
     </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const audio = new Audio('i_wanna_be_yours.mp3');
+    audio.loop = true;
+
+    // localStorage'dan müzik durumunu oku
+    const isPlaying = localStorage.getItem('musicPlaying') === 'true';
+
+    const soundIcon = document.getElementById('sound-icon');
+
+    if (isPlaying) {
+      audio.play().catch(() => {
+        console.log('Müzik otomatik çalamadı, kullanıcıdan tıklama bekleniyor.');
+      });
+      soundIcon.textContent = '🤍';
+    } else {
+      soundIcon.textContent = '🔊';
+    }
+
+    soundIcon.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        localStorage.setItem('musicPlaying', 'true');
+        soundIcon.textContent = '🤍';
+      } else {
+        audio.pause();
+        localStorage.setItem('musicPlaying', 'false');
+        soundIcon.textContent = '🔊';
+      }
+    });
+  });
+</script>
 </body>
 </html>
