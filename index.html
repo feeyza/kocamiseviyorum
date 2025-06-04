@@ -4,35 +4,52 @@
     <meta charset="UTF-8" />
     <title>LVL 25 - Multiplayer Life</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        #music-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 999;
+            background: none;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-    <!-- Müzik oynatıcı -->
+    <!-- Müzik -->
     <audio id="bg-music" loop>
-        <source src="i_wanna_be_yours.mp3" type="audio/mpeg" />
+        <source src="i_wanna_be_yours.mp3" type="audio/mpeg">
         Tarayıcınız ses çalmayı desteklemiyor.
     </audio>
 
-    <!-- Tek bir container -->
+    <!-- Müzik Açma / Durdurma Butonu -->
+    <button id="music-toggle" title="Müziği Aç/Kapat">🎧</button>
+
+    <!-- Ana içerik -->
     <div class="container">
         <h1>🎮 Level 25'e Hoş Geldin</h1>
         <p>Multiplayer hayatımın en iyi oyuncususun 💖</p>
-
-        <button onclick="goToLevel('level24.html')">⬅️ Last Level</button>
-        <button onclick="goToLevel('level26.html')">Next Level ➡️</button>
+        <button onclick="window.location.href='level24.html'">⬅️ Last Level</button>
+        <button onclick="window.location.href='level26.html'">Next Level ➡️</button>
     </div>
 
     <script>
-        function goToLevel(url) {
-            const audio = document.getElementById("bg-music");
-            audio.play().then(() => {
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 1000); // 1 saniye bekleyip yönlendir
-            }).catch((e) => {
-                console.log("Müzik çalınamadı:", e);
-                window.location.href = url;
-            });
-        }
+        const music = document.getElementById('bg-music');
+        const toggleBtn = document.getElementById('music-toggle');
+        let isPlaying = false;
+
+        toggleBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                music.pause();
+                toggleBtn.textContent = '🎧';
+            } else {
+                music.play();
+                toggleBtn.textContent = '🔊';
+            }
+            isPlaying = !isPlaying;
+        });
     </script>
 </body>
 </html>
