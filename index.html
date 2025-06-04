@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Müzik -->
+    <!-- Müzik oynatıcı -->
     <audio id="bg-music" loop>
         <source src="i_wanna_be_yours.mp3" type="audio/mpeg" />
         Tarayıcınız ses çalmayı desteklemiyor.
     </audio>
 
-    <!-- Ana içerik -->
+    <!-- Tek bir container -->
     <div class="container">
         <h1>🎮 Level 25'e Hoş Geldin</h1>
         <p>Multiplayer hayatımın en iyi oyuncususun 💖</p>
@@ -24,16 +24,12 @@
     <script>
         function goToLevel(url) {
             const audio = document.getElementById("bg-music");
-
-            // Kullanıcı etkileşimiyle müziği başlat
             audio.play().then(() => {
-                // Müzik başladıktan 1 saniye sonra yönlendir
                 setTimeout(() => {
                     window.location.href = url;
-                }, 1000);
+                }, 1000); // 1 saniye bekleyip yönlendir
             }).catch((e) => {
                 console.log("Müzik çalınamadı:", e);
-                // Eğer müzik çalmazsa direkt yönlendir
                 window.location.href = url;
             });
         }
