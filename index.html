@@ -1,64 +1,111 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8" />
-    <title>LVL 25 - Multiplayer Life</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      #sound-icon {
-        font-size: 50px;
-        cursor: pointer;
-        user-select: none;
-        margin-bottom: 20px;
-        transition: transform 0.3s ease;
-      }
-      #sound-icon:hover {
-        transform: scale(1.2);
-      }
-    </style>
-</head>
-<body>
-   <div class="container">
-      <div id="sound-icon" title="Müziği Aç/Kapat">🔊</div>
-
-      <h1>🎮 Level 25'e Hoş Geldin</h1>
-      <p>Multiplayer hayatımın en iyi oyuncususun 💖</p>
-
-      <button onclick="window.location.href='level24.html'">⬅️ Last Level</button>
-      <button onclick="window.location.href='level26.html'">Next Level ➡️</button>
-   </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const audio = new Audio('i_wanna_be_yours.mp3');
-    audio.loop = true;
-
-    // localStorage'dan müzik durumunu oku
-    const isPlaying = localStorage.getItem('musicPlaying') === 'true';
-
-    const soundIcon = document.getElementById('sound-icon');
-
-    if (isPlaying) {
-      audio.play().catch(() => {
-        console.log('Müzik otomatik çalamadı, kullanıcıdan tıklama bekleniyor.');
-      });
-      soundIcon.textContent = '🤍';
-    } else {
-      soundIcon.textContent = '🔊';
+  <meta charset="UTF-8" />
+  <title>LVL 25 - Multiplayer Life</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #sound-icon {
+      font-size: 50px;
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+    #sound-icon:hover {
+      transform: scale(1.2);
     }
 
-    soundIcon.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        localStorage.setItem('musicPlaying', 'true');
+    #love-letter {
+      font-size: 40px;
+      cursor: pointer;
+      margin-top: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    #love-letter:hover {
+      transform: scale(1.2);
+    }
+
+    #letter-content {
+      display: none;
+      margin-top: 20px;
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 15px;
+      color: #fff;
+      max-width: 500px;
+      line-height: 1.6;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="sound-icon" title="Müziği Aç/Kapat">🔊</div>
+
+    <h1>🎮 Level 25'e Hoş Geldin</h1>
+    <p>Multiplayer hayatımın en iyi oyuncususun 💖</p>
+
+    <button onclick="window.location.href='level24.html'">⬅️ Last Level</button>
+    <button onclick="window.location.href='level26.html'">Next Level ➡️</button>
+
+    <div id="love-letter" title="Bir mektup var...">📩</div>
+    <div id="letter-content">
+      Level 25’e hoş geldin hayatım! 🎮🎂<br><br>
+      Bugün senin oyunun yeni bir seviyeye geçtiği gün. Ama bu oyun öyle sıradan değil… içinde bolca kahkaha, azıcık kapris, biraz kıskançlık (benim tarafımdan 🤭), sınırsız sevgi ve birlikte kazanılan sayısız başarı var. Seninle her gün, bazen bir çocuk gibi kahkaha atarak, bazen dünyayı sırtlamış gibiyken omuz omuza vererek, bazen sadece sessizce yan yana durarak geçiyor.<br><br>
+      Senin çocukluk fotoğrafına bakınca gülümsüyorum çünkü o küçük çocuk büyümüş de bana aşık olmuş. ❤️<br><br>
+      Ben senin gözlerine her baktığımda, "tamam, bu oyunu birlikte oynayacağız" diyorum. Kaybetsek de seninle kaybederim, çünkü seninle olmak zaten en büyük zafer. Bugün 25 oldun ama bana kalırsa sen her yaşta biraz çocuk, biraz kahraman, biraz deli, ama her zaman "benim en sevdiğim insan"sın.<br><br>
+      Ve inan, bu seviye çok güzel geçecek, çünkü yanında ben varım – oyun arkadaşı, rehber karakter ve sonsuz can kaynağın olarak. Seni çok ama çok seviyorum. Nice birlikte seviye atlayacağımız yıllara, kalbim! 💖👾🎉
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const audio = new Audio('i_wanna_be_yours.mp3');
+      audio.loop = true;
+
+      const isPlaying = localStorage.getItem('musicPlaying') === 'true';
+      const soundIcon = document.getElementById('sound-icon');
+
+      if (isPlaying) {
+        audio.play().catch(() => {
+          console.log('Müzik otomatik çalamadı, kullanıcıdan tıklama bekleniyor.');
+        });
         soundIcon.textContent = '🤍';
       } else {
-        audio.pause();
-        localStorage.setItem('musicPlaying', 'false');
         soundIcon.textContent = '🔊';
       }
+
+      soundIcon.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+          localStorage.setItem('musicPlaying', 'true');
+          soundIcon.textContent = '🤍';
+        } else {
+          audio.pause();
+          localStorage.setItem('musicPlaying', 'false');
+          soundIcon.textContent = '🔊';
+        }
+      });
+
+      const letterIcon = document.getElementById('love-letter');
+      const letterContent = document.getElementById('letter-content');
+
+      letterIcon.addEventListener('click', () => {
+        if (letterContent.style.display === 'none' || letterContent.style.display === '') {
+          letterContent.style.display = 'block';
+        } else {
+          letterContent.style.display = 'none';
+        }
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
