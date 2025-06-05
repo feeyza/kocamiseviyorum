@@ -12,6 +12,7 @@
       margin-bottom: 20px;
       transition: transform 0.3s ease;
     }
+
     #sound-icon:hover {
       transform: scale(1.2);
     }
@@ -43,6 +44,26 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-300px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 20px;
+      animation: floatHearts 2s linear forwards;
+      pointer-events: none;
+      z-index: 9999;
     }
   </style>
 </head>
@@ -101,11 +122,28 @@
       letterIcon.addEventListener('click', () => {
         if (letterContent.style.display === 'none' || letterContent.style.display === '') {
           letterContent.style.display = 'block';
+          createHearts(); // Kalpleri göster
         } else {
           letterContent.style.display = 'none';
         }
       });
+
+      function createHearts() {
+        for (let i = 0; i < 20; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.textContent = '❤️';
+          heart.style.left = Math.random() * window.innerWidth + 'px';
+          heart.style.top = Math.random() * window.innerHeight + 'px';
+          document.body.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 2000);
+        }
+      }
     });
   </script>
 </body>
 </html>
+
