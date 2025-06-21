@@ -179,11 +179,73 @@
       </section>
 
         
+       
+
+
+
+
         <section>
-          <h2>❓ Ne renk</h2>
-          <img src="17.jpeg" alt="sanat" style="max-width: 100%; border-radius: 10px;" />   
-         <p>yesil or yesil</p>
-      </section>
+  <h2>❓ Ne renk</h2>
+  <img src="17.jpeg" alt="sanat" style="max-width: 100%; border-radius: 10px;" />
+  <p>yesil or yesil</p>
+
+  <div id="color-quiz" style="margin-top: 10px;">
+    <button class="color-option" data-color="blue">Mavi</button>
+    <button class="color-option" data-color="green">Yeşil</button>
+  </div>
+</section>
+
+<style>
+  #color-quiz button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: 2px solid #555;
+    border-radius: 8px;
+    background-color: #222;
+    color: #eee;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+
+  #color-quiz button.selected.correct {
+    background-color: #2ecc71; /* yeşil */
+    border-color: #27ae60;
+    color: white;
+  }
+
+  #color-quiz button.selected.wrong {
+    background-color: #e74c3c; /* kırmızı */
+    border-color: #c0392b;
+    color: white;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('#color-quiz .color-option').forEach(button => {
+    button.addEventListener('click', () => {
+      // Önce tüm butonların seçilmiş sınıflarını temizle
+      document.querySelectorAll('#color-quiz .color-option').forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+      });
+
+      // Tıklanan butona selected ekle
+      button.classList.add('selected');
+
+      // Doğru renk yeşil (data-color="green")
+      if(button.dataset.color === 'green'){
+        button.classList.add('correct');
+      } else {
+        button.classList.add('wrong');
+      }
+    });
+  });
+</script>
+
+
+
+
+        
 
 
 
