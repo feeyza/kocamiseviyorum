@@ -26,11 +26,14 @@
     <h1> Yeni Macera Başlıyor!</h1>
     <p>Bu seviyede bizi yeni anılarımız bekliyor ♡ </p> <br><br>
 
-  
 
-    <button onclick="window.location.href='index.html'">⬅️ Geri Dön</button>
-    <button onclick="alert('Bir sonraki level yakında!')">Next Level ➡️</button>
-  </div>
+  <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+  <button onclick="window.location.href='index.html'">⬅️ Geri Dön</button>
+  <button onclick="alert('Bir sonraki level yakında!')">Next Level ➡️</button>
+</div>
+
+
+  
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -61,6 +64,8 @@
         localStorage.setItem('musicPlaying', 'false');
         soundIcon.textContent = '🔊';
       }
+
+      
     });
   });
 </script>
