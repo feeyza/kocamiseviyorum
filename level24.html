@@ -175,14 +175,13 @@
       </div>
     </div>
 
-<script>
+
+   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const audio = new Audio('i_wanna_be_yours.mp3');
     audio.loop = true;
 
-    // localStorage'dan müzik durumunu oku
     const isPlaying = localStorage.getItem('musicPlaying') === 'true';
-
     const soundIcon = document.getElementById('sound-icon');
 
     if (isPlaying) {
@@ -206,11 +205,10 @@
       }
     });
   });
-</script>
 
-    <script>
+  // Sayfa açıldığında en üste kaydırma komutu
   window.addEventListener('load', () => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // <- eklendi
   });
 </script>
 
