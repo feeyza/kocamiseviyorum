@@ -206,13 +206,14 @@
         soundIcon.textContent = '🔊';
       }
     });
-  });
 
-  // Sayfa açıldığında en üste kaydırma komutu
-  window.addEventListener('load', () => {
-    window.scrollTo(0, 0); // <- eklendi
+    // Sayfa tam renderlandıktan sonra en üste kaydırma
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }, 100); // 100ms gecikme yeterlidir
   });
 </script>
+
 
 </body>
 </html>
