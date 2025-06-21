@@ -17,10 +17,16 @@
         transform: scale(1.2);
       }
     </style>
+ <script>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual'; // <- eklendi
+      }
+    </script>
 </head>
 <body>
     <div class="container">
       <div id="sound-icon" title="Müziği Aç/Kapat">🔊</div>
+
 
       <h1>🌟 Level 24 - Özel Anılarımız</h1>
       <p>Birlikte geçirdiğimiz güzel anlardan bir seçki...</p>
